@@ -299,6 +299,14 @@ a {
   min-height: 560px;
 }
 
+.hero__visual--mobile {
+  display: none;
+}
+
+.hero__visual--desktop {
+  display: block;
+}
+
 .visual-card {
   position: relative;
   display: grid;
@@ -604,9 +612,14 @@ a {
 }
 
 @media (max-width: 759px) {
-  .hero__visual {
-    order: -1;
+  .hero__visual--desktop {
+    display: none;
+  }
+
+  .hero__visual--mobile {
+    display: block;
     min-height: 430px;
+    margin: 28px 0 24px;
   }
 
   .visual-card {
