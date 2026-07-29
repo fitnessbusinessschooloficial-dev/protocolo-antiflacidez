@@ -600,26 +600,16 @@
     panel.hidden = true;
     panel.innerHTML = `
       <div class="paf-consent__copy">
-        <strong id="paf-consent-title">Sua privacidade importa</strong>
-        <p>
-          Usamos cookies opcionais para medir visitas e melhorar esta página com Google Analytics,
-          Google Tag Manager, Meta Pixel e Microsoft Clarity. A Kiwify processa o checkout e as compras.
-        </p>
-        <details>
-          <summary>Como os dados são usados</summary>
-          <p>
-            Medimos navegação, rolagem, tempo, cliques, reprodução da VSL e avanço no quiz. Não
-            enviamos às plataformas as respostas individuais do quiz, nome, e-mail ou telefone.
-            Você pode mudar sua escolha a qualquer momento em “Privacidade”.
-          </p>
-        </details>
+        <strong id="paf-consent-title">
+          Você aceita nossos cookies para entendermos melhor o seu cenário atual?
+        </strong>
       </div>
       <div class="paf-consent__actions">
-        <button type="button" class="paf-consent__reject" data-consent-reject>
-          Recusar opcionais
-        </button>
         <button type="button" class="paf-consent__accept" data-consent-accept>
-          Aceitar e continuar
+          Aceitar cookies
+        </button>
+        <button type="button" class="paf-consent__reject" data-consent-reject>
+          Recusar
         </button>
       </div>
     `;
