@@ -1,0 +1,12 @@
+{
+  "name": "protocolo-antiflacidez",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Páginas de vendas do Protocolo Antiflacidez",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
