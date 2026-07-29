@@ -618,10 +618,12 @@
     trigger.type = "button";
     trigger.className = "paf-privacy-trigger";
     trigger.dataset.consentSettings = "";
-    trigger.textContent = "Privacidade";
+    trigger.textContent = "Preferências de cookies";
     trigger.hidden = true;
 
-    document.body.append(panel, trigger);
+    document.body.append(panel);
+    const footerNav = document.querySelector(".site-footer__bottom nav");
+    (footerNav || document.body).append(trigger);
 
     const showPanel = () => {
       panel.hidden = false;

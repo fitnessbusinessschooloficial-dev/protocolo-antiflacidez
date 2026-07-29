@@ -918,7 +918,10 @@ ol {
 
 .checkpoint-card {
   width: min(100%, 680px);
+  min-width: 0;
+  max-width: 100%;
   padding: clamp(28px, 7vw, 56px);
+  overflow: hidden;
   border-radius: var(--radius-lg);
   background: var(--paper);
   box-shadow: var(--shadow);
@@ -977,6 +980,7 @@ ol {
 }
 
 .checkpoint-card h2 {
+  max-width: 100%;
   margin-bottom: 16px;
   font-family: var(--display);
   font-size: clamp(3.2rem, 14vw, 5.7rem);
@@ -984,6 +988,8 @@ ol {
   line-height: 0.98;
   letter-spacing: 0.02em;
   text-transform: uppercase;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
 }
 
 .checkpoint-card > p:not(.eyebrow) {
@@ -992,6 +998,7 @@ ol {
   margin-bottom: 9px;
   margin-left: auto;
   color: #4f5a52;
+  overflow-wrap: anywhere;
 }
 
 .checkpoint-progress {
@@ -2784,6 +2791,24 @@ ol {
     margin-top: -7px;
     margin-bottom: 8px;
   }
+
+  .checkpoint-card {
+    width: 100%;
+    padding: 26px 20px;
+    border-radius: 24px;
+  }
+
+  .checkpoint-card h2 {
+    margin-bottom: 14px;
+    font-size: clamp(2.25rem, 11vw, 2.85rem);
+    line-height: 1;
+    letter-spacing: 0.018em;
+  }
+
+  .checkpoint-card > p:not(.eyebrow) {
+    font-size: 0.92rem;
+    line-height: 1.58;
+  }
 }
 
 @media (min-width: 640px) {
@@ -3311,17 +3336,37 @@ ol {
     padding-top: 28px;
   }
 
+  .result-shell,
+  .result-top,
+  .result-grid,
+  .result-analysis,
+  .recommendation-card {
+    min-width: 0;
+    max-width: 100%;
+  }
+
   .result-top {
     margin-bottom: 20px;
     padding-bottom: 18px;
   }
 
   .result-top h2 {
-    font-size: clamp(2.75rem, 12vw, 3.35rem);
+    max-width: 100%;
+    font-size: clamp(2.25rem, 10.5vw, 2.9rem);
+    line-height: 1;
+    overflow-wrap: anywhere;
+    text-wrap: balance;
   }
 
   .result-analysis > p:first-child {
     font-size: 0.98rem;
+  }
+
+  .result-analysis p,
+  .result-analysis li,
+  .recommendation-card p,
+  .profile-note strong {
+    overflow-wrap: anywhere;
   }
 
   .check-list--compact {
@@ -3330,6 +3375,14 @@ ol {
 
   .recommendation-card {
     padding: 22px 18px;
+  }
+
+  .recommendation-card h3 {
+    max-width: 100%;
+    font-size: clamp(2.05rem, 10vw, 2.7rem);
+    line-height: 0.98;
+    overflow-wrap: anywhere;
+    text-wrap: balance;
   }
 
   .compact-authority__intro {

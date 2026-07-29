@@ -127,21 +127,30 @@
 }
 
 .paf-privacy-trigger {
-  position: fixed;
-  z-index: 2147482999;
-  right: 12px;
-  bottom: max(12px, env(safe-area-inset-bottom));
-  min-height: 36px;
-  padding: 8px 12px;
-  color: rgba(255, 255, 255, 0.84);
-  background: rgba(5, 27, 20, 0.9);
-  border: 1px solid rgba(202, 255, 101, 0.3);
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.24);
-  backdrop-filter: blur(10px);
+  position: static;
+  width: auto;
+  min-height: auto;
+  padding: 0;
+  color: inherit;
+  background: none;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  backdrop-filter: none;
 }
 
 .paf-privacy-trigger[hidden] {
   display: none;
+}
+
+.paf-privacy-trigger:hover {
+  color: var(--lime);
 }
 
 .paf-consent button:focus-visible,
@@ -163,12 +172,6 @@
   .paf-consent__actions {
     grid-template-columns: auto auto;
     margin-top: 0;
-  }
-}
-
-@media (max-width: 767px) {
-  .paf-privacy-trigger {
-    bottom: max(78px, calc(env(safe-area-inset-bottom) + 70px));
   }
 }
 
