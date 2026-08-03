@@ -7,6 +7,8 @@ const path = require("node:path");
 const HOST = "0.0.0.0";
 const PORT = Number(process.env.PORT) || 8080;
 const PUBLIC_ROOT = path.resolve(__dirname);
+const INVALID_PATH_CHARACTERS = /[\u0000-\u001f\u007f]/u;
+const PUBLIC_ROOT_ENTRIES = new Set(["assets", "index.html", "quiz", "src", "vsl"]);
 
 const MIME_TYPES = Object.freeze({
   ".css": "text/css; charset=utf-8",
@@ -50,6 +52,19 @@ function resolvePublicPath(urlPathname) {
     return null;
   }
 
+  if (INVALID_PATH_CHARACTERS.test(decodedPath)) {
+    return null;
+  }
+
+  const pathSegments = decodedPath.split(/[\\/]+/u).filter(Boolean);
+  if (pathSegments.some((segment) => segment.startsWith("."))) {
+    return null;
+  }
+
+  if (pathSegments.length > 0 && !PUBLIC_ROOT_ENTRIES.has(pathSegments[0])) {
+    return null;
+  }
+
   const relativePath = decodedPath.replace(/^[/\\]+/, "");
   const absolutePath = path.resolve(PUBLIC_ROOT, relativePath);
 
@@ -58,6 +73,14 @@ function resolvePublicPath(urlPathname) {
   }
 
   return absolutePath;
+}
+
+function statPath(filePath, callback) {
+  try {
+    fs.stat(filePath, callback);
+  } catch (error) {
+    callback(error);
+  }
 }
 
 function getCacheControl(extension) {
@@ -185,7 +208,7 @@ const server = http.createServer((request, response) => {
     return;
   }
 
-  fs.stat(requestedPath, (statError, requestedStats) => {
+  statPath(requestedPath, (statError, requestedStats) => {
     if (statError) {
       sendText(response, 404, "Página não encontrada.");
       return;
@@ -203,7 +226,7 @@ const server = http.createServer((request, response) => {
 
       const indexPath = path.join(requestedPath, "index.html");
 
-      fs.stat(indexPath, (indexError, indexStats) => {
+      statPath(indexPath, (indexError, indexStats) => {
         if (indexError || !indexStats.isFile()) {
           sendText(response, 404, "Página não encontrada.");
           return;
